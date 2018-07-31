@@ -5,19 +5,35 @@ import { Link, Route } from 'react-router-dom';
 import SearchBooks from './SearchBooks';
 import BookShelf from './BookShelf'
 
-const shelves = [{id: 'currentlyReading', name: 'Currently Reading'}, {id: 'wantToRead', name: 'Want to Read'}, {id: 'read', name: 'Read'}]
-
 class BooksApp extends React.Component {
   
   state = {
-    books: []
+    books: [],
+    currentlyReading: [],
+    read: [],
+    wantToRead: []
   }
 
   componentDidMount() {
     BooksAPI.getAll()
     .then(data => {
       this.setState(() => ({
-        books: data
+        books: data,
+        currentlyReading: data.filter((book) => book.shelf === 'currentlyReading').map((book) => book.id),
+        read: data.filter((book) => book.shelf === 'read').map((book) => book.id),
+        wantToRead: data.filter((book) => book.shelf === 'wantToRead').map((book) => book.id)
+      }))
+    })
+  }
+
+  changeShelf = (book, shelf) => {
+    console.log(book, shelf)
+    BooksAPI.update(book, shelf)
+    .then(data => {
+      this.setState(() => ({
+        currentlyReading: data.currentlyReading,
+        read: data.read,
+        wantToRead: data.wantToRead
       }))
     })
   }
@@ -35,9 +51,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                {shelves.map((shelf) => (
-                  <BookShelf key={shelf.id} shelfName={shelf.name} books={this.state.books.filter((book) => book.shelf === shelf.id)} />
-                  ))}
+                  <BookShelf key='currentlyReading' shelfName='Currently Reading' books={this.state.books.filter((book) => this.state.currentlyReading.includes(book.id) )} changeShelf={this.changeShelf} />
+                  <BookShelf key='read' shelfName='Read' books={this.state.books.filter((book) => this.state.read.includes(book.id) )} changeShelf={this.changeShelf} />
+                  <BookShelf key='wantToRead' shelfName='Want To Read' books={this.state.books.filter((book) => this.state.wantToRead.includes(book.id) )} changeShelf={this.changeShelf} />
               </div>
             </div>
             <div className="open-search">

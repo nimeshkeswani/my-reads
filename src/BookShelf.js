@@ -4,7 +4,7 @@ import Book from './Book'
 class BookShelf extends Component {
 
 	render() {
-		const { shelfName, books } = this.props
+		const { shelfName, books, changeShelf } = this.props
 
 		return (
             <div className="bookshelf">
@@ -12,7 +12,7 @@ class BookShelf extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                 	{books.map((book) => (
-                		<Book key={book.id} book={book} />
+                		<Book key={book.id} book={book} changeShelf={changeShelf} />
                 		))}
                 </ol>
               </div>
