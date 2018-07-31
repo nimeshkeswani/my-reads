@@ -27,10 +27,10 @@ class BooksApp extends React.Component {
   }
 
   changeShelf = (book, shelf) => {
-    console.log(book, shelf)
     BooksAPI.update(book, shelf)
     .then(data => {
-      this.setState(() => ({
+      this.setState((prevState) => ({
+        books: this.state.books.map(bk => bk.id).includes(book.id) ? prevState.books : prevState.books.concat(book),
         currentlyReading: data.currentlyReading,
         read: data.read,
         wantToRead: data.wantToRead
@@ -51,9 +51,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                  <BookShelf key='currentlyReading' shelfName='Currently Reading' books={this.state.books.filter((book) => this.state.currentlyReading.includes(book.id) )} changeShelf={this.changeShelf} />
-                  <BookShelf key='wantToRead' shelfName='Want To Read' books={this.state.books.filter((book) => this.state.wantToRead.includes(book.id) )} changeShelf={this.changeShelf} />
-                  <BookShelf key='read' shelfName='Read' books={this.state.books.filter((book) => this.state.read.includes(book.id) )} changeShelf={this.changeShelf} />
+                  <BookShelf key='currentlyReading' shelfName='Currently Reading' currentlyReading={this.state.currentlyReading} read={this.state.read} wantToRead={this.state.wantToRead} books={this.state.books.filter((book) => this.state.currentlyReading.includes(book.id) )} changeShelf={this.changeShelf} />
+                  <BookShelf key='wantToRead' shelfName='Want To Read' currentlyReading={this.state.currentlyReading} read={this.state.read} wantToRead={this.state.wantToRead} books={this.state.books.filter((book) => this.state.wantToRead.includes(book.id) )} changeShelf={this.changeShelf} />
+                  <BookShelf key='read' shelfName='Read' currentlyReading={this.state.currentlyReading} read={this.state.read} wantToRead={this.state.wantToRead} books={this.state.books.filter((book) => this.state.read.includes(book.id) )} changeShelf={this.changeShelf} />
               </div>
             </div>
             <div className="open-search">

@@ -13,7 +13,7 @@ class Book extends Component {
 				  <div className="book-top">
 				    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks !== undefined ? book.imageLinks.thumbnail : null })` }}></div>
 				    <div className="book-shelf-changer">
-				      <select value={book.shelf !== undefined ? book.shelf : currentlyReading.includes(book.id) ? 'currentlyReading' : read.includes(book.id) ? 'read' : wantToRead.includes(book.id) ? 'wantToRead' : 'none'} onChange={(event) => changeShelf(book, event.target.value)}>
+				      <select value={currentlyReading.includes(book.id) ? 'currentlyReading' : read.includes(book.id) ? 'read' : wantToRead.includes(book.id) ? 'wantToRead' : 'none'} onChange={(event) => changeShelf(book, event.target.value)}>
 				        <option value="move" disabled>Move to...</option>
 				        <option value="currentlyReading">Currently Reading</option>
 				        <option value="wantToRead">Want to Read</option>
