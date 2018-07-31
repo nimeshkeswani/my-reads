@@ -51,7 +51,7 @@ class SearchBooks extends Component {
 		return (
 			<div className="search-books">
             	<SearchBooksBar searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
-            	<SearchBooksResults searchResults={this.state.searchResults}/>
+            	<SearchBooksResults searchResults={this.state.searchResults} changeShelf={this.props.changeShelf} />
             </div>
 			)
 	}
