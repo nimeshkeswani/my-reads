@@ -5,7 +5,7 @@ class SearchBooksResults extends Component {
 
 	render() {
 
-		const { searchResults, changeShelf } = this.props
+		const { searchResults, currentlyReading, read, wantToRead, changeShelf } = this.props
 
 		return (
             <div className="search-books-results">
@@ -14,7 +14,7 @@ class SearchBooksResults extends Component {
               {
               	searchResults.length >= 1 && (
               		searchResults.map((book) => (
-                		<Book key={book.id} book={book} changeShelf={changeShelf} />
+                		<Book key={book.id} book={book} currentlyReading={currentlyReading} read={read} wantToRead={wantToRead} changeShelf={changeShelf} />
                 		))
               	)
               }
