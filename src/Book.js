@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Book extends Component {
 	render() {
 
-		const { title, authors, imageLinks } = this.props
+		const { book } = this.props
 
 		//console.log(id, title, authors, imageURL);
 
@@ -11,9 +11,9 @@ class Book extends Component {
 			<li>
 				<div className="book">
 				  <div className="book-top">
-				    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks !== undefined ? imageLinks.thumbnail : null })` }}></div>
+				    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks !== undefined ? book.imageLinks.thumbnail : null })` }}></div>
 				    <div className="book-shelf-changer">
-				      <select>
+				      <select defaultValue={book.shelf}>
 				        <option value="move" disabled>Move to...</option>
 				        <option value="currentlyReading">Currently Reading</option>
 				        <option value="wantToRead">Want to Read</option>
@@ -22,8 +22,8 @@ class Book extends Component {
 				      </select>
 				    </div>
 				  </div>
-				  <div className="book-title">{title}</div>
-				  <div className="book-authors">{authors ? authors.join(', ') : ''}</div>
+				  <div className="book-title">{book.title}</div>
+				  <div className="book-authors">{book.authors ? book.authors.join(', ') : ''}</div>
 				</div>
 			</li>
 			)

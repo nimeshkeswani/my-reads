@@ -14,7 +14,7 @@ class SearchBooksResults extends Component {
               {
               	searchResults.length >= 1 && (
               		searchResults.map((book) => (
-                		<Book key={book.id} title={book.title} authors={book.authors} imageLinks={book.imageLinks}/>
+                		<Book key={book.id} book={book} />
                 		))
               	)
               }
