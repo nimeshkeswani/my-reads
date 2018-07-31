@@ -17,12 +17,18 @@ class SearchBooks extends Component {
 	}
 
 	searchBooks = () => {
-		BooksAPI.search(this.state.searchTerm)
-		.then(data => {
+		this.state.searchTerm !== '' ? (
+			BooksAPI.search(this.state.searchTerm)
+			.then(data => {
+				this.setState(() => ({
+					searchResults: data
+				}))
+			})
+		) : (
 			this.setState(() => ({
-				searchResults: data !== undefined ? data : []
-			}))
-		})
+					searchResults: []
+				}))
+		)
 	}
 	
 	componentDidMount() {
