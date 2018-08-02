@@ -2,8 +2,6 @@
 
 This is a Book Tracking App built using React.
 
-## TL;DR
-
 To start using it:
 
 * clone the repository
