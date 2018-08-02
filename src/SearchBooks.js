@@ -31,13 +31,7 @@ class SearchBooks extends Component {
 		)
 	}
 	
-	componentDidMount() {
-		//console.log('componentDidMount')
-		//this.searchBooks(this.state.searchTerm)
-	}
-	
 	componentDidUpdate(prevProps, prevState) {
-	  //console.log('componentDidUpdate')
 	  if (this.state.searchTerm !== prevState.searchTerm) {
 	  	this.searchBooks()
 	  }
@@ -48,9 +42,6 @@ class SearchBooks extends Component {
 
 		const { currentlyReading, read, wantToRead, changeShelf } = this.props
 
-		//console.log('render')
-		//console.log(this.state.searchTerm)
-		//console.log(this.state.searchResults)
 		return (
 			<div className="search-books">
             	<SearchBooksBar searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>

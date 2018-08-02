@@ -5,8 +5,6 @@ class Book extends Component {
 
 		const { book, currentlyReading, read, wantToRead, changeShelf } = this.props
 
-		//console.log(id, title, authors, imageURL);
-
 		return (
 			<li>
 				<div className="book">
