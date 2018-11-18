@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 import SearchBooks from './SearchBooks';
 import BookShelf from './BookShelf'
 
@@ -41,7 +41,9 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path='/search' render={() => (
+	<Router basename={process.env.PUBLIC_URL}>
+        <Fragment>
+	<Route exact path='/search' render={() => (
           <SearchBooks currentlyReading={this.state.currentlyReading} read={this.state.read} wantToRead={this.state.wantToRead} changeShelf={this.changeShelf} />
           )} />
         <Route exact path='/' render={() => (
@@ -61,6 +63,8 @@ class BooksApp extends React.Component {
             </div>
           </div>
           )} />
+	</Fragment>
+	</Router>
       </div>
     )
   }
