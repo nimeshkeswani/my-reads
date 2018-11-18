@@ -2,6 +2,8 @@
 
 This is a Book Tracking App built using React.
 
+Check it out at: https://nimeshkeswani.github.io/my-reads/
+
 To start using it:
 
 * clone the repository
